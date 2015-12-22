@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/kristian.sooklal/productionMonitoringWorkspace/Selenium/lib/selenium-api-2.46.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kristian.sooklal/productionMonitoringWorkspace/Selenium/lib/selenium-chrome-driver-2.46.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kristian.sooklal/productionMonitoringWorkspace/Selenium/lib/selenium-java-2.46.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kristian.sooklal/productionMonitoringWorkspace/Selenium/lib/selenium-server-standalone-2.48.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kristian.sooklal/productionMonitoringWorkspace/Selenium/lib/selenium-support-2.46.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kristian.sooklal/productionMonitoringWorkspace/Selenium/lib/slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

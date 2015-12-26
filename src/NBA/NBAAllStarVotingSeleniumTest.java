@@ -1,5 +1,7 @@
 package NBA;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -20,6 +22,47 @@ public class NBAAllStarVotingSeleniumTest {
 			{"Kobe Bryant", "Trevor Ariza"};
 	public static final String NBA_ALL_STAR_VOTING = "http://vote.nba.com/";
 	public static final ArrayList<String> ALL_STAR_NOMINEES = getAllNBAAllStarVotes();
+	private static final String CONFIG_FILE_PATH = "resources/api.config";
+	private static final String EMAIL = getEmailAddress(); /** TODO Add your email login to NBA.com here **/
+	private static final String PASSWORD = getPassword(); /** TODO Add your NBA.com password here **/
+
+	@SuppressWarnings("resource")
+	private static final String getEmailAddress(){
+		String line = null;
+		try {
+			FileReader fileReader = new FileReader(CONFIG_FILE_PATH);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			while((line = bufferedReader.readLine()) != null) {
+				if (line.indexOf(":") > 0 && line.indexOf("Email") >= 0){
+					String email = line.split(":")[1].trim();
+					return email;
+				}
+			}
+		} catch (Exception e){
+			return line;
+		}
+		return line;
+	}
+
+	@SuppressWarnings("resource")
+	private static final String getPassword(){
+		String line = null;
+		try {
+			FileReader fileReader = new FileReader(CONFIG_FILE_PATH);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			while((line = bufferedReader.readLine()) != null) {
+				if (line.indexOf(":") > 0 && line.indexOf("Password") >= 0){
+					String password = line.split(":")[1].trim();
+					return password;
+				}
+			}
+		} catch (Exception e){
+			return line;
+		}
+		return line;
+	}
 
 	private WebDriver chromeDriver = null;
 
@@ -87,53 +130,12 @@ public class NBAAllStarVotingSeleniumTest {
 		}
 
 		clickReviewAndSubmitButton(chromeDriver);
-		Thread.sleep(1000);
-		//chromeDriver.findElement(By.linkText("Create Account")).click();
-		List<WebElement> anchors = chromeDriver.findElements(By.tagName("a"));
-		for (WebElement anchor: anchors){
-			String anchorText = anchor.getText();
-			if (anchorText != null && anchorText.trim().equals("Create Account")){
-				System.out.println(anchorText);
-				anchor.sendKeys(Keys.ENTER);
-			}
-		} 
-		//chromeDriver.findElement(By.linkText("VOTE")).click();
+		Thread.sleep(2000);
+		chromeDriver.findElement(By.id("email")).sendKeys(EMAIL);
+		chromeDriver.findElement(By.id("password")).sendKeys(PASSWORD);
+		chromeDriver.findElement(By.cssSelector("input[type='submit']")).click();
 
 
-
-
-		//		final String userName = bcgUserName + getRandomString();
-		//		System.out.println("Username: " + userName);
-		//
-		//		setComputedUserName(userName);
-		//		chromeDriver.findElement(By.id("tUserName")).sendKeys(userName);
-		//		chromeDriver.findElement(By.id("a-checkname")).click();
-		//		Thread.sleep(1500);
-		//		String isUserNameAvailable = chromeDriver.findElement(By.id("u-name-available")).getText();
-		//		System.out.println("Username " + isUserNameAvailable);
-		//		System.out.println("Username " + isUserNameAvailable);
-		//		assertTrue(isUserNameAvailable != null && isUserNameAvailable.contains("Available!"));
-		//
-		//		chromeDriver.findElement(By.id("tPassword")).sendKeys(bcgUserPassword);
-		//		chromeDriver.findElement(By.id("tPasswordRetype")).sendKeys(bcgUserPassword);
-		//
-		//		System.out.println("Username: " + userName + "\tPassword: " + bcgUserPassword);
-		//
-		//		chromeDriver.findElement(By.cssSelector("#sSec1_chosen > a.chosen-single > div > b")).click();
-		//		pressDownArrowAndEnter(chromeDriver);
-		//
-		//		String passwordMatch = chromeDriver.findElement(By.id("result-Match")).getText();
-		//		System.out.println(passwordMatch);
-		//		assertTrue(passwordMatch != null && passwordMatch.contains("Match"));
-		//
-		//		chromeDriver.findElement(By.id("tSecAnswer1")).sendKeys(question1City);
-		//		chromeDriver.findElement(By.id("tSecAnswer1Match")).sendKeys(question1City);
-		//		System.out.println("Answered Security Question 1: " + question1City);
-		//
-		//		chromeDriver.findElement(By.cssSelector("#sSec2_chosen > a.chosen-single > div > b")).click();
-		//		pressDownArrowAndEnter(chromeDriver);
-		//		chromeDriver.findElement(By.id("tSecAnswer2")).sendKeys(question2Pet);
-		//		chromeDriver.findElement(By.id("tSecAnswer2Match")).sendKeys(question2Pet);
 	}
 
 	public static void waitUntilElementVisible(WebDriverWait wait, String string) {

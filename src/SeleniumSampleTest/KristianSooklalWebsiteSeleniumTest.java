@@ -22,7 +22,7 @@ public class KristianSooklalWebsiteSeleniumTest {
 	private WebDriver chromeDriver = null;
 
 	{
-		System.setProperty("webdriver.chrome.driver", "src/SeleniumSampleTest/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/chromedriver.exe");
 		chromeDriver = new ChromeDriver();
 	}
 	

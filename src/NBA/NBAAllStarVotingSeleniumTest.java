@@ -74,7 +74,7 @@ public class NBAAllStarVotingSeleniumTest {
 	@After
 	public void tearDown(){
 		if (chromeDriver != null){
-			//		chromeDriver.close();
+			chromeDriver.close();
 			chromeDriver = null;
 		}
 	}

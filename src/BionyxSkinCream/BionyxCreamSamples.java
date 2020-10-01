@@ -1,9 +1,8 @@
 package BionyxSkinCream;
 
+import BreatheRightNasalStrips.BreatheRightNasalStrips;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.GregorianCalendar;
 
 public class BionyxCreamSamples {
     private ChromeDriver chromeDriver;
@@ -18,11 +17,13 @@ public class BionyxCreamSamples {
         String url = "https://bionyxskincare.com/free-samples/";
         chromeDriver.get(url);
         Thread.sleep(5000);
-        chromeDriver.findElementById("your-name").sendKeys("Kris Sooklal");
-        chromeDriver.findElementById("your-street").sendKeys("4809 Erie St.");
+        chromeDriver.findElementById("your-name").sendKeys(BreatheRightNasalStrips.getRandomName(true) + " " +
+                BreatheRightNasalStrips.getRandomName(false));
+        chromeDriver.findElementById("your-street").sendKeys(BreatheRightNasalStrips.getErieSt());
+        chromeDriver.findElementById("your-apt").sendKeys(BreatheRightNasalStrips.getRandomAddressAttention());
         chromeDriver.findElementById("your-city").sendKeys("College Park");
         chromeDriver.findElementById("your-state").sendKeys("MD");
         chromeDriver.findElementById("your-postal").sendKeys("20910");
-        chromeDriver.findElementById("your-email").sendKeys("k.sooklal" + new GregorianCalendar().getTimeInMillis() + "@yahoo.com");
+        chromeDriver.findElementById("your-email").sendKeys(BreatheRightNasalStrips.getRandomEmailAddressFromValidEmailAddresses());
     }
 }
